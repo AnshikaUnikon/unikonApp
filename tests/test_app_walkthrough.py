@@ -28,58 +28,22 @@ class AppWalkthroughTest(unittest.TestCase):
     def test_launchApp(self):
         self.loginPage.launch_app()
 
-    # @pytest.mark.run(order=2)
-    # def test_appWalkthrough(self):
-    #     # Home page
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.cross()
-    #     self.basePage.backGesture()
-    #
-    #     # Unishorts page
-    #     self.uniShortsPage.unishorts_tabbar()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.cross()
-    #
-    #     # AI Search page
-    #     self.aiSearchPage.ai_tabbar()
-    #     self.appWalkthrough.cross()
-    #
-    #     # Help page
-    #     self.helpPage.help_tabbar()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.help_cross()
-    #
-    #     # Profile page
-    #     self.profilePage.profile_tabbar()
-    #     self.loginPage.login_gmail()
-    #     self.profilePage.profile_tabbar()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.next()
-    #     self.appWalkthrough.cross()
-
-
     @pytest.mark.run(order=2)
-    def test_appWalkthrough_skip(self):
+    def test_appWalkthrough(self):
         # Home page
-        self.appWalkthrough.skip()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.cross()
+        self.basePage.backGesture()
 
         # Unishorts page
         self.uniShortsPage.unishorts_tabbar()
-        self.appWalkthrough.skip()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.cross()
 
         # AI Search page
         self.aiSearchPage.ai_tabbar()
@@ -87,10 +51,46 @@ class AppWalkthroughTest(unittest.TestCase):
 
         # Help page
         self.helpPage.help_tabbar()
-        self.appWalkthrough.skip()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.help_cross()
 
         # Profile page
         self.profilePage.profile_tabbar()
         self.loginPage.login_gmail()
         self.profilePage.profile_tabbar()
-        self.appWalkthrough.skip()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.next()
+        self.appWalkthrough.cross()
+
+
+    # @pytest.mark.run(order=2)
+    # def test_appWalkthrough_skip(self):
+    #     # Home page
+    #     self.appWalkthrough.skip()
+    #
+    #     # Unishorts page
+    #     self.uniShortsPage.unishorts_tabbar()
+    #     self.appWalkthrough.skip()
+    #
+    #     # AI Search page
+    #     self.aiSearchPage.ai_tabbar()
+    #     self.appWalkthrough.cross()
+    #
+    #     # Help page
+    #     self.helpPage.help_tabbar()
+    #     self.appWalkthrough.skip()
+    #
+    #     # Profile page
+    #     self.profilePage.profile_tabbar()
+    #     self.loginPage.login_gmail()
+    #     self.profilePage.profile_tabbar()
+    #     self.appWalkthrough.skip()
