@@ -10,7 +10,7 @@ class Driver:
             # automationName='Flutter',
             # deviceName='Pixxel 3a API 34',
             deviceName='Galaxy S21 FE 5G',
-            app='/Users/apple/Downloads/app-qa-release.apk',
+            app='/Users/apple/Downloads/app-qa-release (1).apk',
             udid='RZCW91MRP6W'
         )
         appium_server_url = 'http://0.0.0.0:4723/wd/hub'

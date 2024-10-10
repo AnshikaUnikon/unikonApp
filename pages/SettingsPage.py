@@ -53,7 +53,7 @@ class SettingsPage(BasePage):
     _select_rate_dropdown = 'new UiSelector().resourceId("select_rate_dropdown")'
     _select_percent = 'new UiSelector().description("10%")'
     _early_bird_toggle = 'new UiSelector().resourceId("availability_switch")'
-    _early_bird_textfield = 'new UiSelector().resourceId("make_early_bird_textfield"))'
+    _early_bird_textfield = 'new UiSelector().resourceId("make_early_bird_textfield")'
     _discount_code_textfield = 'new UiSelector().resourceId("discount_code_textfield")'
     _select_validity = 'new UiSelector().resourceId("date_picker")'
     _select_date = 'new UiSelector().description("31, Thursday, October 31, 2024")'
@@ -68,8 +68,9 @@ class SettingsPage(BasePage):
     _save_btn = 'new UiSelector().resourceId("save_button")'
     _services = 'new UiSelector().resourceId("services_chip")'
     _instant_services = 'new UiSelector().resourceId("instant services_chip")'
+    _all_chip = 'new UiSelector().resourceId("all_chip")'
     _edit_discount_code = 'new UiSelector().resourceId("edit_button").instance(0)'
-    _user_availed_cta = 'new UiSelector().description("1 user availed")'
+    _user_availed_cta = 'new UiSelector().description("2 users availed")'
     _delete_icon = 'new UiSelector().resourceId("delete_button")'
     _confirm_btn = 'new UiSelector().description("Confirm")'
 
@@ -94,7 +95,7 @@ class SettingsPage(BasePage):
     _price_textfield = 'new UiSelector().resourceId("price_textfield")'
     _benefits_textfield = 'new UiSelector().resourceId("benefits_textfield")'
     _upload_cta = 'new UiSelector().resourceId("upload_button")'
-    _gallery = 'new UiSelector().description("Gallery"))'
+    _gallery = 'new UiSelector().description("Gallery")'
     _video_select = 'new UiSelector().resourceId("com.google.android.providers.media.module:id/icon_thumbnail").instance(0)'
 
     # My services
@@ -110,7 +111,7 @@ class SettingsPage(BasePage):
     _book_session_btn = 'new UiSelector().resourceId("book_session_button")'
 
     # Manage availability
-    _manage_availability_tile = 'new UiSelector().resourceId("manage_availability_tile")")'
+    _manage_availability_tile = 'new UiSelector().resourceId("manage_availability_tile")'
     _add_more_slots_btn = 'new UiSelector().description("Add more slots")'
     _start_time = 'new UiSelector().className("android.widget.Button").instance(0)'
     _start_time_select = 'new UiSelector().description("12:00 AM")'
@@ -118,11 +119,11 @@ class SettingsPage(BasePage):
     _end_time_select = 'new UiSelector().description("12:15 AM")'
     _all_week_toggle = 'new UiSelector().className("android.view.View").instance(7)'
     _add_btn = 'new UiSelector().description("Add")'
-    _edit_service_icon = 'new UiSelector().className("android.widget.ImageView").instance(2)'
+    _edit_availability_icon = 'new UiSelector().className("android.widget.ImageView").instance(2)'
     _sunday_select = 'new UiSelector().description("S").instance(0)'
     _monday_select = 'new UiSelector().description("M")'
     _update_btn = 'new UiSelector().description("Update")'
-    _delete_service_icon = 'new UiSelector().className("android.widget.ImageView").instance(1)'
+    _delete_availability_icon = 'new UiSelector().className("android.widget.ImageView").instance(1)'
 
     # Recorded sessions
     _recorded_sessions_tile = 'new UiSelector().resourceId("recorded_sessions_tile")'
@@ -260,7 +261,7 @@ class SettingsPage(BasePage):
         print("Click on Close button")
         self.driver.back()
 
-    def discount_codes(self, user_count1, discount_code1, user_name1, user_count2, discount_code2, user_name2):
+    def discount_codes(self, user_count, discount_code1, user_name, discount_code2):
         self.clickElement(self._discount_codes_tile, "ui")
         print("Click on Discount codes tile")
 
@@ -273,22 +274,22 @@ class SettingsPage(BasePage):
         self.clickElement(self._service_card_checkbox, "ui")
         print("Click on Service card checkbox")
 
-        self.create_discount_codes(user_count1, discount_code1, user_name1)
+        self.create_discount_codes(user_count, discount_code1, user_name)
 
-        self.edit_discount_codes()
-
-        self.clickElement(self._generate_discount_code_btn, "ui")
-        print("Click on Generate code button")
-
-        self.clickElement(self._unikonnect_tile, "ui")
-        print("Click on Unikonnect card")
-
-        self.clickElement(self._audio_call_checkbox, "ui")
-        print("Click on Audio call checkbox")
-
-        self.create_discount_codes(user_count2, discount_code2, user_name2)
-
-        self.edit_discount_codes()
+        self.edit_discount_codes(user_count)
+        #
+        # self.clickElement(self._generate_discount_code_btn, "ui")
+        # print("Click on Generate code button")
+        #
+        # self.clickElement(self._unikonnect_tile, "ui")
+        # print("Click on Unikonnect card")
+        #
+        # self.clickElement(self._audio_call_checkbox, "ui")
+        # print("Click on Audio call checkbox")
+        #
+        # self.create_discount_codes(user_count, discount_code2, user_name)
+        #
+        # self.edit_discount_codes(user_count)
 
         self.clickElement(self._services, "ui")
         print("Click on Services suggested filter")
@@ -305,16 +306,24 @@ class SettingsPage(BasePage):
         self.clickElement(self._instant_services, "ui")
         print("Click on Instant Services suggested filter")
 
-        self.clickElement(self._edit_btn, "ui")
-        print("Click on Edit button")
+        # self.clickElement(self._edit_btn, "ui")
+        # print("Click on Edit button")
+        #
+        # self.clickElement(self._delete_icon, "ui")
+        # print("Click on Delete icon")
+        #
+        # self.clickElement(self._confirm_btn, "ui")
+        # print("Click on Confirm button")
 
-        self.clickElement(self._delete_icon, "ui")
-        print("Click on Delete icon")
+        self.clickElement(self._all_chip, "ui")
+        print("Click on All suggested filter")
 
-        self.clickElement(self._confirm_btn, "ui")
-        print("Click on Confirm button")
-
-        for x in range(0, 17):
+        self.scrollToElement(self._user_availed_cta, "ui")
+        self.clickElement(self._user_availed_cta, "ui")
+        print("Click on User availed cta")
+        time.sleep(2)
+        # 18
+        for x in range(0, 10):
             self.driver.back()
 
     def create_discount_codes(self, user_count, discount_code, user_name):
@@ -326,6 +335,9 @@ class SettingsPage(BasePage):
 
         self.clickElement(self._select_more, "ui")
         print("Click on Select more cta")
+
+        self.clickElement(self._continue_btn, "ui")
+        print("Click on Continue button")
 
         self.clickElement(self._select_rate_dropdown, "ui")
         print("Click on Select rate dropdown")
@@ -341,6 +353,7 @@ class SettingsPage(BasePage):
         print("Enter User count")
         self.driver.back()
 
+        self.scrollToElement(self._discount_code_textfield, "ui")
         self.clickElement(self._discount_code_textfield, "ui")
         self.sendText(discount_code, self._discount_code_textfield, "ui")
         print("Enter Discount code")
@@ -360,22 +373,25 @@ class SettingsPage(BasePage):
 
         self.clickElement(self._add_people_textfield, "ui")
         self.sendText(user_name, self._add_people_textfield, "ui")
+        self.driver.back()
+        self.scrollToElement(self._select_people, "ui")
         self.clickElement(self._select_people, "ui")
         print("Enter user name")
-        self.driver.back()
 
         self.clickElement(self._generate_code_btn, "ui")
         print("Click on Generate code button")
 
         self.clickElement(self._share_icon, "ui")
         print("Click on Share icon")
+        time.sleep(2)
         self.driver.back()
 
         self.clickElement(self._share_btn, "ui")
         print("Click on Share button")
+        time.sleep(2)
         self.driver.back()
 
-    def edit_discount_codes(self):
+    def edit_discount_codes(self, user_count):
         self.clickElement(self._edit_btn, "ui")
         print("Click on Edit button")
 
@@ -385,6 +401,10 @@ class SettingsPage(BasePage):
 
         self.clickElement(self._early_bird_toggle, "ui")
         print("Click on Early bird toggle")
+
+        self.clickElement(self._early_bird_textfield, "ui")
+        self.sendText(user_count, self._early_bird_textfield, "ui")
+        print("Enter User count")
 
         self.clickElement(self._save_btn, "ui")
         print("Click on Save button")
@@ -454,6 +474,7 @@ class SettingsPage(BasePage):
 
         self.clickElement(self._video_select, "ui")
         print("Select video")
+        time.sleep(15)
 
     def my_services(self):
         self.clickElement(self._my_services_tile, "ui")
@@ -469,9 +490,6 @@ class SettingsPage(BasePage):
     def upcoming_sessions(self):
         self.clickElement(self._upcoming_sessions_tile, "ui")
         print("Click on Upcoming sessions tile")
-
-        self.clickElement(self._create_a_service_card_tile, "ui")
-        print("Click on Create a service card tile")
 
         self.clickElement(self._past_chip, "ui")
         print("Click on Past suggested filter")
@@ -499,34 +517,134 @@ class SettingsPage(BasePage):
         self.clickElement(self._manage_availability_tile, "ui")
         print("Click on Manage availability tile")
 
+        self.clickElement(self._add_more_slots_btn, "ui")
+        print("Click on Add more slots button")
 
-        self.clickElement(self._service_dropdown, "ui")
-        print("Click on Service type dropdown")
+        self.clickElement(self._start_time, "ui")
+        print("Click on Start time dropdown")
 
-        self.clickElement(self._audio_type, "ui")
-        print("Select service type")
+        self.clickElement(self._start_time_select, "ui")
+        print("Select start time")
 
-        self.clickElement(self._duration_dropdown, "ui")
-        print("Click on Duration dropdown")
+        self.clickElement(self._end_time, "ui")
+        print("Click on End time dropdown")
 
-        self.clickElement(self._10_min_duration_select, "ui")
-        print("Select service duration")
+        self.clickElement(self._end_time_select, "ui")
+        print("Select end time")
 
-        self.clickElement(self._price_textfield, "ui")
-        self.sendText(service_price, self._price_textfield, "ui")
-        print("Enter Service price")
+        self.clickElement(self._all_week_toggle, "ui")
+        print("Click on All week toggle")
+
+        self.clickElement(self._add_btn, "ui")
+        print("Click on Add button")
         self.driver.back()
 
-        self.clickElement(self._benefits_textfield, "ui")
-        self.sendText(service_benefits, self._benefits_textfield, "ui")
-        print("Enter Service benefits")
+        self.clickElement(self._edit_availability_icon, "ui")
+        print("Click on Edit availability icon")
+
+        self.clickElement(self._sunday_select, "ui")
+        self.clickElement(self._monday_select, "ui")
+        print("Change selected days")
+
+        self.clickElement(self._update_btn, "ui")
+        print("click on Update button")
+
+        self.clickElement(self._delete_availability_icon, "ui")
+        print("Click on Delete availability icon")
+
+        self.clickElement(self._confirm_btn, "ui")
+        print("Click on Confirm button")
+        time.sleep(2)
+        self.driver.back()
+
+    def recorded_sessions(self):
+        self.scrollToElement(self._recorded_sessions_tile, "ui")
+        self.clickElement(self._recorded_sessions_tile, "ui")
+        print("Click on Recorded sessions tile")
+        self.driver.back()
+
+    def recorded_unishorts(self):
+        self.scrollToElement(self._recorded_unishorts_tile, "ui")
+        self.clickElement(self._recorded_unishorts_tile, "ui")
+        print("Click on Recorded unishorts tile")
+        self.driver.back()
+
+    def data_privacy(self):
+        self.scrollToElement(self._data_privacy_tile, "ui")
+        self.clickElement(self._data_privacy_tile, "ui")
+        print("Click on Data privacy tile")
+        time.sleep(2)
+        self.driver.back()
+
+    def terms_and_conditions(self):
+        self.scrollToElement(self._terms_conditions_tile, "ui")
+        self.clickElement(self._terms_conditions_tile, "ui")
+        print("Click on Terms and conditions tile")
+        time.sleep(2)
+        self.driver.back()
+
+    def payment_policy(self):
+        self.scrollToElement(self._payment_policy_tile, "ui")
+        self.clickElement(self._payment_policy_tile, "ui")
+        print("Click on Payment policy tile")
+        time.sleep(2)
+        self.driver.back()
+
+    def blocked_users(self):
+        self.scrollToElement(self._blocked_users_tile, "ui")
+        self.clickElement(self._blocked_users_tile, "ui")
+        print("Click on Blocked users tile")
+
+        self.clickElement(self._unblock_btn, "ui")
+        self.clickElement(self._unblock_btn, "ui")
+        print("Click on Unblock button")
+        self.driver.back()
+
+    def faqs(self, search_topic):
+        self.scrollToElement(self._faqs_tile, "ui")
+        self.clickElement(self._faqs_tile, "ui")
+        print("Click on FAQ's tile")
+
+        self.clickElement(self._search_textfield, "ui")
+        self.sendText(search_topic, self._search_textfield, "ui")
+        print("Enter search topic")
+        self.driver.back()
+
+        self.clickElement(self._faq_topic, "ui")
+        print("Click on FAQ's topic")
+        self.driver.back()
+
+        self.clickElement(self._report_an_issue_tab, "ui")
+        print("Click on Report an issue tab")
+        self.driver.back()
+
+    def report_an_issue(self, description):
+        self.scrollToElement(self._report_an_issue_tile, "ui")
+        self.clickElement(self._report_an_issue_tile, "ui")
+        print("Click on Report an issue tile")
+
+        self.clickElement(self._category_dropdown, "ui")
+        print("Click on Category dropdown")
+
+        self.clickElement(self._category_select, "ui")
+        print("Select category")
+
+        self.clickElement(self._description_textfield, "ui")
+        self.sendText(description, self._description_textfield, "ui")
+        print("Enter Description")
         self.driver.back()
 
         self.select_video()
 
-        self.scrollToElement(self._save_btn, "ui")
-        self.clickElement(self._save_btn, "ui")
-        print("Click on Create button")
+        self.scrollToElement(self._call_us_btn, "ui")
+        self.clickElement(self._call_us_btn, "ui")
+        print("Click on Call us button")
+        self.driver.back()
+        self.driver.back()
+
+        self.scrollToElement(self._submit_btn, "ui")
+        self.clickElement(self._submit_btn, "ui")
+        print("Click on Submit button")
 
 
 
