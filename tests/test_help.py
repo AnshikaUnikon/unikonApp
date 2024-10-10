@@ -3,7 +3,7 @@ import pytest
 from base.DriverClass import Driver
 from pages.BasePage import BasePage
 from pages.LoginPage import LoginPage
-from pages.ProfilePage import ProfilePage
+from pages.MyProfilePage import MyProfilePage
 from pages.HelpPage import HelpPage
 from pages.AppWalkthrough import AppWalkthrough
 
@@ -13,7 +13,7 @@ class HelpTest(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def classObject(self):
         self.loginPage = LoginPage(self.driver)
-        self.profilePage = ProfilePage(self.driver)
+        self.myProfilePage = MyProfilePage(self.driver)
         self.helpPage = HelpPage(self.driver)
         self.appWalkthrough = AppWalkthrough(self.driver)
 
@@ -24,7 +24,7 @@ class HelpTest(unittest.TestCase):
     @pytest.mark.run(order=2)
     def test_loginGmail(self):
         self.appWalkthrough.skip()
-        self.profilePage.profile_tabbar()
+        self.myProfilePage.profile_tabbar()
         self.loginPage.login_gmail()
 
     @pytest.mark.run(order=3)

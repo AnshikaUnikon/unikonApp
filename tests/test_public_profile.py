@@ -9,16 +9,17 @@ from pages.UniShortsPage import UniShortsPage
 from pages.AISearchPage import AISearchPage
 from pages.HomePage import HomePage
 from pages.AppWalkthrough import AppWalkthrough
+from pages.PublicProfilePage import PublicProfilePage
 
 
 @pytest.mark.usefixtures("beforeClass", "beforeMethod")
-class AppWalkthroughTest(unittest.TestCase):
+class PublicProfileTest(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def classObject(self):
         self.loginPage = LoginPage(self.driver)
         self.basePage = BasePage(self.driver)
         self.myProfilePage = MyProfilePage(self.driver)
-        self.uniShortsPage = UniShortsPage(self.driver)
+        self.publicProfilePage = PublicProfilePage(self.driver)
         self.aiSearchPage = AISearchPage(self.driver)
         self.homePage = HomePage(self.driver)
         self.appWalkthrough = AppWalkthrough(self.driver)
@@ -29,20 +30,15 @@ class AppWalkthroughTest(unittest.TestCase):
 
     @pytest.mark.run(order=2)
     def test_homeWalkthrough(self):
-        self.appWalkthrough.next()
-        self.appWalkthrough.next()
-        self.appWalkthrough.next()
-        self.appWalkthrough.next()
-        self.appWalkthrough.next()
-        self.appWalkthrough.cross()
-        self.basePage.backGesture()
-
+        self.appWalkthrough.skip()
         self.myProfilePage.profile_tabbar()
         self.loginPage.login_gmail()
 
     @pytest.mark.run(order=3)
-    def test_home(self):
-        # self.homePage.categories()
-        # self.homePage.filters()
-        self.homePage.mini_user_profile_card()
+    def test_publicProfile(self):
+        self.homePage.view_public_profile("Rachel")
+        self.publicProfilePage.public_profile()
+        self.homePage.view_public_profile("Joey")
+        self.publicProfilePage.new_public_profile()
+
 

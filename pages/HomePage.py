@@ -15,6 +15,7 @@ class HomePage(BasePage):
     _categories_view_more = 'new UiSelector().resourceId("view_more_tile")'
     _careers_category = 'new UiSelector().resourceId("careers_tile")'
     _konnections_view_all = 'new UiSelector().resourceId("view_all")'
+    _view_user_profile = 'new UiSelector().resourceId("konnect_user_card")'
 
     # Filters
     _search_bar = 'new UiSelector().resourceId("search_textfield")'
@@ -339,6 +340,19 @@ class HomePage(BasePage):
 
         self.clickElement(self._confirm_btn, "ui")
         print("Click on Confirm button")
+
+
+    def view_public_profile(self, user_name):
+        self.scrollToElement(self._konnections_view_all, "ui")
+        self.clickElement(self._konnections_view_all, "ui")
+        print("Click on View all cta for all konnections")
+
+        self.clickElement(self._search_bar, "ui")
+        self.sendText(user_name, self._search_bar, "ui")
+
+        self.clickElement(self._view_user_profile, "ui")
+
+
         
         
         

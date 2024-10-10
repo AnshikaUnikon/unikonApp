@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 
 
-class ProfilePage(BasePage):
+class MyProfilePage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -13,16 +13,20 @@ class ProfilePage(BasePage):
     _profile = 'new UiSelector().resourceId("profile_tabbar_button")'
 
     #Edit Profile
-    _profile_screen = '//android.view.View[@content-desc="Profile"]'
-    _edit_icon = '//android.widget.ScrollView/android.view.View[5]'
-    _add_profile_image_icon = '//android.widget.ScrollView/android.widget.ImageView[1]'
-    _add_profile_image_btn = '2'
-    _gallery_icon = '//android.widget.ImageView[@content-desc="Gallery"]'
-    # _while_using_the_app = '//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_foreground_only_button"]'
-    _device_gallery = '(//android.widget.ImageView[@resource-id="com.android.intentresolver:id/icon"])[1]'
-    _download_gallery = '(//android.widget.ImageView[@resource-id="com.sec.android.gallery3d:id/thumbnail"])[5]'
-    _image_gallery = '(//android.widget.FrameLayout[@resource-id="com.sec.android.gallery3d:id/deco_view_layout"])[1]'
-    _check_icon = '//android.widget.Button[@content-desc="Crop"]'
+    _edit_icon = 'new UiSelector().resourceId("edit_button")'
+    _basic_info = 'new UiSelector().description("Basic info")'
+    _about_me = 'new UiSelector().description("About me")'
+    _my_expertise = 'new UiSelector().description("My expertise").instance(1)'
+    _pricing_details = 'new UiSelector().description("Pricing details")'
+    _social_media_links = 'new UiSelector().description("Social media links")'
+    _add_profile_picture_icon = 'new UiSelector().resourceId("add_profile_picture_button")'
+    _add_profile_picture_cta = 'new UiSelector().resourceId("add_profile_picture_tile")'
+    _add_profile_video_cta = 'new UiSelector().resourceId("add_profile_video_tile")'
+    _gallery_icon = 'new UiSelector().resourceId("open_gallery_button")'
+    _device_gallery = 'new UiSelector().resourceId("com.android.intentresolver:id/icon").instance(0)'
+    _pictures_gallery = 'new UiSelector().resourceId("com.sec.android.gallery3d:id/thumbnail").instance(4)'
+    _image_select = 'new UiSelector().resourceId("com.sec.android.gallery3d:id/deco_view_layout").instance(1)'
+    _check_icon = 'new UiSelector().resourceId("ai.unikon.app.unikon.qa:id/menu_crop")'
     _first_name = '//android.widget.EditText[@text="Shreya"]'
     _add_first_name = '//android.widget.ScrollView/android.view.View[3]/android.widget.EditText'
     _last_name = '//android.widget.EditText[@text="Singhal"]'

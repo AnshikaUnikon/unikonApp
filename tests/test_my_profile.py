@@ -3,7 +3,7 @@ import pytest
 from base.DriverClass import Driver
 from pages.BasePage import BasePage
 from pages.LoginPage import LoginPage
-from pages.ProfilePage import ProfilePage
+from pages.MyProfilePage import MyProfilePage
 
 
 @pytest.mark.usefixtures("beforeClass", "beforeMethod")
@@ -11,7 +11,7 @@ class ProfileTest(unittest.TestCase):
     @pytest.fixture(autouse=True)
     def classObject(self):
         self.loginPage = LoginPage(self.driver)
-        self.profilePage = ProfilePage(self.driver)
+        self.myProfilePage = MyProfilePage(self.driver)
 
     @pytest.mark.run(order=1)
     def test_launchApp(self):
@@ -23,9 +23,9 @@ class ProfileTest(unittest.TestCase):
 
     @pytest.mark.run(order=3)
     def test_updateProfile(self):
-        # self.profilePage.update_details()
-        self.profilePage.edit_details()
+        # self.myProfilePage.update_details()
+        self.myProfilePage.edit_details()
 
     # @pytest.mark.run(order=4)
     # def test_myProfile(self):
-    #     self.profilePage.my_profile()
+    #     self.myProfilePage.my_profile()
